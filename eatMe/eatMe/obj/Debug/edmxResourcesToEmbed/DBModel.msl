@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EatMeModelStoreContainer" CdmEntityContainer="EatMeEntities">
+    <EntitySetMapping Name="Kullanici">
+      <EntityTypeMapping TypeName="EatMeModel.Kullanici">
+        <MappingFragment StoreEntitySet="Kullanici">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="Isim" ColumnName="Isim" />
+          <ScalarProperty Name="Soyisim" ColumnName="Soyisim" />
+          <ScalarProperty Name="TelefonNo" ColumnName="TelefonNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Masa">
+      <EntityTypeMapping TypeName="EatMeModel.Masa">
+        <MappingFragment StoreEntitySet="Masa">
+          <ScalarProperty Name="RestoranID" ColumnName="RestoranID" />
+          <ScalarProperty Name="No" ColumnName="No" />
+          <ScalarProperty Name="Bos" ColumnName="Bos" />
+          <ScalarProperty Name="Kapasite" ColumnName="Kapasite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Restoran">
+      <EntityTypeMapping TypeName="EatMeModel.Restoran">
+        <MappingFragment StoreEntitySet="Restoran">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="Isim" ColumnName="Isim" />
+          <ScalarProperty Name="Tur" ColumnName="Tur" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="Kapasite" ColumnName="Kapasite" />
+          <ScalarProperty Name="AnlikKapasite" ColumnName="AnlikKapasite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rezervasyon">
+      <EntityTypeMapping TypeName="EatMeModel.Rezervasyon">
+        <MappingFragment StoreEntitySet="Rezervasyon">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RestoranID" ColumnName="RestoranID" />
+          <ScalarProperty Name="MusteriID" ColumnName="MusteriID" />
+          <ScalarProperty Name="KisiSayisi" ColumnName="KisiSayisi" />
+          <ScalarProperty Name="SiparisID" ColumnName="SiparisID" />
+          <ScalarProperty Name="MasaNo" ColumnName="MasaNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Siparis">
+      <EntityTypeMapping TypeName="EatMeModel.Siparis">
+        <MappingFragment StoreEntitySet="Siparis">
+          <ScalarProperty Name="RezervasyonID" ColumnName="RezervasyonID" />
+          <ScalarProperty Name="RestoranID" ColumnName="RestoranID" />
+          <ScalarProperty Name="MusteriID" ColumnName="MusteriID" />
+          <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+          <ScalarProperty Name="Adet" ColumnName="Adet" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="EatMeModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Urun">
+      <EntityTypeMapping TypeName="EatMeModel.Urun">
+        <MappingFragment StoreEntitySet="Urun">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RestoranID" ColumnName="RestoranID" />
+          <ScalarProperty Name="Isim" ColumnName="Isim" />
+          <ScalarProperty Name="MenuTuru" ColumnName="MenuTuru" />
+          <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_yeniKullanici" FunctionName="EatMeModel.Store.sp_yeniKullanici" />
+    <FunctionImportMapping FunctionImportName="sp_kullaniciAdiKontrol" FunctionName="EatMeModel.Store.sp_kullaniciAdiKontrol">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EatMeModel.sp_kullaniciAdiKontrol_Result">
+          <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_girisYap" FunctionName="EatMeModel.Store.sp_girisYap">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EatMeModel.sp_girisYap_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="Isim" ColumnName="Isim" />
+          <ScalarProperty Name="Soyisim" ColumnName="Soyisim" />
+          <ScalarProperty Name="TelefonNo" ColumnName="TelefonNo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getKullaniciBilgisi" FunctionName="EatMeModel.Store.sp_getKullaniciBilgisi">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EatMeModel.sp_getKullaniciBilgisi_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="Isim" ColumnName="Isim" />
+          <ScalarProperty Name="Soyisim" ColumnName="Soyisim" />
+          <ScalarProperty Name="TelefonNo" ColumnName="TelefonNo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_araResGetir" FunctionName="EatMeModel.Store.sp_araResGetir">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EatMeModel.sp_araResGetir_Result">
+          <ScalarProperty Name="Isim" ColumnName="Isim" />
+          <ScalarProperty Name="Tur" ColumnName="Tur" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="AnlikKapasite" ColumnName="AnlikKapasite" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_masalariGetir" FunctionName="EatMeModel.Store.sp_masalariGetir">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EatMeModel.sp_masalariGetir_Result">
+          <ScalarProperty Name="No" ColumnName="No" />
+          <ScalarProperty Name="Kapasite" ColumnName="Kapasite" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_resAraUrunGetir" FunctionName="EatMeModel.Store.sp_resAraUrunGetir">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EatMeModel.sp_resAraUrunGetir_Result">
+          <ScalarProperty Name="Isim" ColumnName="Isim" />
+          <ScalarProperty Name="MenuTuru" ColumnName="MenuTuru" />
+          <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_turResGetir" FunctionName="EatMeModel.Store.sp_turResGetir">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EatMeModel.sp_turResGetir_Result">
+          <ScalarProperty Name="Isim" ColumnName="Isim" />
+          <ScalarProperty Name="Tur" ColumnName="Tur" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_urunGetir" FunctionName="EatMeModel.Store.sp_urunGetir">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EatMeModel.sp_urunGetir_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RestoranID" ColumnName="RestoranID" />
+          <ScalarProperty Name="Isim" ColumnName="Isim" />
+          <ScalarProperty Name="MenuTuru" ColumnName="MenuTuru" />
+          <ScalarProperty Name="Icerik" ColumnName="Icerik" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getRestoran" FunctionName="EatMeModel.Store.sp_getRestoran">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EatMeModel.sp_getRestoran_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="Isim" ColumnName="Isim" />
+          <ScalarProperty Name="Tur" ColumnName="Tur" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="Kapasite" ColumnName="Kapasite" />
+          <ScalarProperty Name="AnlikKapasite" ColumnName="AnlikKapasite" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getMasa" FunctionName="EatMeModel.Store.sp_getMasa">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EatMeModel.sp_getMasa_Result">
+          <ScalarProperty Name="No" ColumnName="No" />
+          <ScalarProperty Name="RestoranID" ColumnName="RestoranID" />
+          <ScalarProperty Name="Bos" ColumnName="Bos" />
+          <ScalarProperty Name="Kapasite" ColumnName="Kapasite" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,101 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="master.master.cs" Inherits="eatMe.MasterPage.master" %>
+<%@ Register Src="/logo.ascx" TagName="LogoControl" TagPrefix="lc"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="~/Images/adam.ico">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/script.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+    <div>
+        <header class="top">
+		    <lc:LogoControl runat="server" />
+            <div class="login-signin">
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+                    <asp:Panel ID="pnl_girisYapilmamis" runat="server">
+                        <asp:Label ID="lbl_kullaniciAdi" CssClass="lbl" runat="server" Text="Kullanıcı Adı:"></asp:Label>
+                        <asp:TextBox ID="txt_kullaniciAdi" CssClass="text" runat="server"></asp:TextBox><br />
+                        <asp:Label ID="lbl_sifre" CssClass="lbl" runat="server" Text="Şifre:"></asp:Label>
+                        <asp:TextBox ID="txt_sifre" TextMode="Password" CssClass="text" runat="server"></asp:TextBox><br />
+                        <asp:Button ID="btn_girisYap" CssClass="btn" runat="server" Text="Giriş Yap" 
+                            onclick="btn_girisYap_Click"/>
+                        <div class="signin">
+                            <span style="font-size:13px; font-family:Tahoma;">Üye değil misin?</span>
+                            <a id="kayitol" onclick="yeniKayit()" class="lbl" style="text-decoration:underline;margin-left:0;vertical-align:inherit;">Kayıt Ol!</a>
+                        </div>
+                    </asp:Panel>
+                   
+                    <asp:Panel ID="pnl_girisYapilmis" runat="server" Visible="false">
+                        <div style="width: 297.63px; height: 117px; text-align:left;">
+                            <div id="profil-ekrani" style="float:left">
+                                <asp:Label ID="lbl_kullaniciIsim" runat="server" CssClass="profil isim" Text=""></asp:Label><br />
+                                <a href="/profil.aspx">
+                                    <asp:LinkButton ID="lb_profil" CssClass="profil" runat="server" 
+                                    onclick="lb_profil_Click">Profil</asp:LinkButton><br />
+                                </a>
+                                <a href="#">
+                                    <asp:Label ID="lbl_restoranlar" runat="server" CssClass="profil" Text="Restoranlarım"></asp:Label><br />
+                                </a>
+                                <a href="/rezervasyonlarim.aspx">
+                                    <asp:Label ID="lbl_rezervasyonlar" runat="server" CssClass="profil" Text="Rezervasyonlar"></asp:Label><br />
+                                </a>
+                                <asp:Button ID="btn_cikisYap" runat="server" CssClass="btn cikisbtn" 
+                                    Text="Çıkış Yap" onclick="btn_cikisYap_Click"/>
+                            </div>
+                            <img alt="Profil Resmi" src="/Images/adam.png" style="float:right; height: 115px;"/>
+                        </div>
+                    </asp:Panel>
+                </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="btn_girisYap" EventName="Click"/>
+                    <asp:AsyncPostBackTrigger ControlID="btn_cikisYap" EventName="Click"/>
+                </Triggers>
+            </asp:UpdatePanel>
+            </div>
+		    <h1 class="header">EAT ME!</h1>
+	    </header>
+	    <nav class="nav">
+		    <div class="nav-wrapper">
+			    <ul class="doors">
+				    <li><a href="/restoranlar.aspx">Restoranlar</a></li>
+				    <li><a href="#">Menüler</a></li>
+				    <li><a href="#">Avantajlar</a></li>
+				    <li><a href="#">Eat ME!</a></li>
+                    <li><a href="/profil.aspx">Profil</a></li>
+                    <li style="float:right;">
+                        <asp:LinkButton ID="lb_temaDegis" runat="server" onclick="lb_temaDegis_Click">Temayı Değiştir</asp:LinkButton></li>
+			    </ul>
+		    </div>
+	    </nav>
+	    <div class="content">
+		    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+            </asp:ContentPlaceHolder>
+	    </div>
+        <footer class="footer">
+            <div style="width:960px;margin:auto;overflow:auto;">
+                <div class="path">
+                    <asp:SiteMapPath ID="SiteMapPath1" runat="server">
+                    </asp:SiteMapPath><br /><br />
+                </div>
+                <div class="imza">
+                    WEB TABANLI WINDOWS PROGRAMLAMA PROJESİ<br />
+                    <br /> ÇAĞRI YILDIZ - 05130000203
+                    <br />OSMAN EMRE ERKMEN - 05120000310
+                </div>
+            </div>
+        </footer>
+    </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EatMeModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="EatMeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Kullanici" EntityType="EatMeModel.Kullanici" />
+    <EntitySet Name="Masa" EntityType="EatMeModel.Masa" />
+    <EntitySet Name="Restoran" EntityType="EatMeModel.Restoran" />
+    <EntitySet Name="Rezervasyon" EntityType="EatMeModel.Rezervasyon" />
+    <EntitySet Name="Siparis" EntityType="EatMeModel.Siparis" />
+    <EntitySet Name="sysdiagrams" EntityType="EatMeModel.sysdiagrams" />
+    <EntitySet Name="Urun" EntityType="EatMeModel.Urun" />
+    <AssociationSet Name="FK_Rezervasyon_Kullanici" Association="EatMeModel.FK_Rezervasyon_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Rezervasyon" EntitySet="Rezervasyon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Siparis_Kullanici" Association="EatMeModel.FK_Siparis_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rezervasyon_Masa" Association="EatMeModel.FK_Rezervasyon_Masa">
+      <End Role="Masa" EntitySet="Masa" />
+      <End Role="Rezervasyon" EntitySet="Rezervasyon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rezervasyon_Restoran" Association="EatMeModel.FK_Rezervasyon_Restoran">
+      <End Role="Restoran" EntitySet="Restoran" />
+      <End Role="Rezervasyon" EntitySet="Rezervasyon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Siparis_Restoran" Association="EatMeModel.FK_Siparis_Restoran">
+      <End Role="Restoran" EntitySet="Restoran" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Siparis_Rezervasyon" Association="EatMeModel.FK_Siparis_Rezervasyon">
+      <End Role="Rezervasyon" EntitySet="Rezervasyon" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Siparis_Urun" Association="EatMeModel.FK_Siparis_Urun">
+      <End Role="Urun" EntitySet="Urun" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+    <FunctionImport Name="sp_yeniKullanici">
+      <Parameter Name="kullaniciAdi" Mode="In" Type="String" />
+      <Parameter Name="sifre" Mode="In" Type="String" />
+      <Parameter Name="isim" Mode="In" Type="String" />
+      <Parameter Name="soyisim" Mode="In" Type="String" />
+      <Parameter Name="telefon" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_kullaniciAdiKontrol" ReturnType="Collection(EatMeModel.sp_kullaniciAdiKontrol_Result)">
+      <Parameter Name="kullaniciAdi" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_girisYap" ReturnType="Collection(EatMeModel.sp_girisYap_Result)">
+      <Parameter Name="kullaniciAdi" Mode="In" Type="String" />
+      <Parameter Name="sifre" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getKullaniciBilgisi" ReturnType="Collection(EatMeModel.sp_getKullaniciBilgisi_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <AssociationSet Name="FK_Masa_Restoran" Association="EatMeModel.FK_Masa_Restoran">
+      <End Role="Restoran" EntitySet="Restoran" />
+      <End Role="Masa" EntitySet="Masa" />
+    </AssociationSet>
+    <FunctionImport Name="sp_araResGetir" ReturnType="Collection(EatMeModel.sp_araResGetir_Result)">
+      <Parameter Name="res" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_masalariGetir" ReturnType="Collection(EatMeModel.sp_masalariGetir_Result)">
+      <Parameter Name="resID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_resAraUrunGetir" ReturnType="Collection(EatMeModel.sp_resAraUrunGetir_Result)">
+      <Parameter Name="res" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_turResGetir" ReturnType="Collection(EatMeModel.sp_turResGetir_Result)">
+      <Parameter Name="tur" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_urunGetir" ReturnType="Collection(EatMeModel.sp_urunGetir_Result)" />
+    <FunctionImport Name="sp_getRestoran" ReturnType="Collection(EatMeModel.sp_getRestoran_Result)" />
+    <FunctionImport Name="sp_getMasa" ReturnType="Collection(EatMeModel.sp_getMasa_Result)">
+      <Parameter Name="restoranID" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="Kullanici">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="KullaniciAdi" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Sifre" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Isim" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Soyisim" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="TelefonNo" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Rezervasyon" Relationship="EatMeModel.FK_Rezervasyon_Kullanici" FromRole="Kullanici" ToRole="Rezervasyon" />
+    <NavigationProperty Name="Siparis" Relationship="EatMeModel.FK_Siparis_Kullanici" FromRole="Kullanici" ToRole="Siparis" />
+  </EntityType>
+  <EntityType Name="Masa">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="Int32" Nullable="false" />
+    <Property Name="Bos" Type="Boolean" Nullable="false" />
+    <Property Name="Kapasite" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Rezervasyon" Relationship="EatMeModel.FK_Rezervasyon_Masa" FromRole="Masa" ToRole="Rezervasyon" />
+    <Property Type="Int32" Name="RestoranID" Nullable="false" />
+    <NavigationProperty Name="Restoran" Relationship="EatMeModel.FK_Masa_Restoran" FromRole="Masa" ToRole="Restoran" />
+  </EntityType>
+  <EntityType Name="Restoran">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="KullaniciAdi" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Sifre" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Isim" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Tur" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Adres" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Kapasite" Type="Int32" Nullable="false" />
+    <Property Name="AnlikKapasite" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Rezervasyon" Relationship="EatMeModel.FK_Rezervasyon_Restoran" FromRole="Restoran" ToRole="Rezervasyon" />
+    <NavigationProperty Name="Siparis" Relationship="EatMeModel.FK_Siparis_Restoran" FromRole="Restoran" ToRole="Siparis" />
+    <NavigationProperty Name="Masa" Relationship="EatMeModel.FK_Masa_Restoran" FromRole="Restoran" ToRole="Masa" />
+  </EntityType>
+  <EntityType Name="Rezervasyon">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="RestoranID" />
+      <PropertyRef Name="MusteriID" />
+    </Key>
+    <Property Name="ID" Type="DateTime" Nullable="false" />
+    <Property Name="RestoranID" Type="Int32" Nullable="false" />
+    <Property Name="MusteriID" Type="Int32" Nullable="false" />
+    <Property Name="KisiSayisi" Type="Int32" Nullable="false" />
+    <Property Name="SiparisID" Type="Int32" />
+    <Property Name="MasaNo" Type="Int32" />
+    <NavigationProperty Name="Kullanici" Relationship="EatMeModel.FK_Rezervasyon_Kullanici" FromRole="Rezervasyon" ToRole="Kullanici" />
+    <NavigationProperty Name="Masa" Relationship="EatMeModel.FK_Rezervasyon_Masa" FromRole="Rezervasyon" ToRole="Masa" />
+    <NavigationProperty Name="Restoran" Relationship="EatMeModel.FK_Rezervasyon_Restoran" FromRole="Rezervasyon" ToRole="Restoran" />
+    <NavigationProperty Name="Siparis" Relationship="EatMeModel.FK_Siparis_Rezervasyon" FromRole="Rezervasyon" ToRole="Siparis" />
+  </EntityType>
+  <EntityType Name="Siparis">
+    <Key>
+      <PropertyRef Name="RezervasyonID" />
+      <PropertyRef Name="RestoranID" />
+      <PropertyRef Name="MusteriID" />
+      <PropertyRef Name="UrunID" />
+    </Key>
+    <Property Name="RezervasyonID" Type="DateTime" Nullable="false" />
+    <Property Name="RestoranID" Type="Int32" Nullable="false" />
+    <Property Name="MusteriID" Type="Int32" Nullable="false" />
+    <Property Name="UrunID" Type="Int32" Nullable="false" />
+    <Property Name="Adet" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Kullanici" Relationship="EatMeModel.FK_Siparis_Kullanici" FromRole="Siparis" ToRole="Kullanici" />
+    <NavigationProperty Name="Restoran" Relationship="EatMeModel.FK_Siparis_Restoran" FromRole="Siparis" ToRole="Restoran" />
+    <NavigationProperty Name="Rezervasyon" Relationship="EatMeModel.FK_Siparis_Rezervasyon" FromRole="Siparis" ToRole="Rezervasyon" />
+    <NavigationProperty Name="Urun" Relationship="EatMeModel.FK_Siparis_Urun" FromRole="Siparis" ToRole="Urun" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Urun">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="RestoranID" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Isim" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="MenuTuru" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="Icerik" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Siparis" Relationship="EatMeModel.FK_Siparis_Urun" FromRole="Urun" ToRole="Siparis" />
+  </EntityType>
+  <Association Name="FK_Rezervasyon_Kullanici">
+    <End Role="Kullanici" Type="EatMeModel.Kullanici" Multiplicity="1" />
+    <End Role="Rezervasyon" Type="EatMeModel.Rezervasyon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Rezervasyon">
+        <PropertyRef Name="MusteriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Siparis_Kullanici">
+    <End Role="Kullanici" Type="EatMeModel.Kullanici" Multiplicity="1" />
+    <End Role="Siparis" Type="EatMeModel.Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="MusteriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rezervasyon_Masa">
+    <End Role="Masa" Type="EatMeModel.Masa" Multiplicity="0..1" />
+    <End Role="Rezervasyon" Type="EatMeModel.Rezervasyon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Masa">
+        <PropertyRef Name="No" />
+      </Principal>
+      <Dependent Role="Rezervasyon">
+        <PropertyRef Name="MasaNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rezervasyon_Restoran">
+    <End Role="Restoran" Type="EatMeModel.Restoran" Multiplicity="1" />
+    <End Role="Rezervasyon" Type="EatMeModel.Rezervasyon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restoran">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Rezervasyon">
+        <PropertyRef Name="RestoranID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Siparis_Restoran">
+    <End Role="Restoran" Type="EatMeModel.Restoran" Multiplicity="1" />
+    <End Role="Siparis" Type="EatMeModel.Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restoran">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="RestoranID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Siparis_Rezervasyon">
+    <End Role="Rezervasyon" Type="EatMeModel.Rezervasyon" Multiplicity="1" />
+    <End Role="Siparis" Type="EatMeModel.Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rezervasyon">
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="RestoranID" />
+        <PropertyRef Name="MusteriID" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="RezervasyonID" />
+        <PropertyRef Name="RestoranID" />
+        <PropertyRef Name="MusteriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Siparis_Urun">
+    <End Role="Urun" Type="EatMeModel.Urun" Multiplicity="1" />
+    <End Role="Siparis" Type="EatMeModel.Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urun">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="UrunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="sp_kullaniciAdiKontrol_Result">
+    <Property Type="String" Name="KullaniciAdi" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_girisYap_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="KullaniciAdi" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Sifre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Isim" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Soyisim" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="TelefonNo" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="sp_getKullaniciBilgisi_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="KullaniciAdi" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Sifre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Isim" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Soyisim" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="TelefonNo" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <Association Name="FK_Masa_Restoran">
+    <End Type="EatMeModel.Restoran" Role="Restoran" Multiplicity="1" />
+    <End Type="EatMeModel.Masa" Role="Masa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restoran">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Masa">
+        <PropertyRef Name="RestoranID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="sp_araResGetir_Result">
+    <Property Type="String" Name="Isim" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Tur" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Adres" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="AnlikKapasite" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_masalariGetir_Result">
+    <Property Type="Int32" Name="No" Nullable="false" />
+    <Property Type="Int32" Name="Kapasite" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_resAraUrunGetir_Result">
+    <Property Type="String" Name="Isim" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="MenuTuru" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Icerik" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_turResGetir_Result">
+    <Property Type="String" Name="Isim" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Tur" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Adres" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_urunGetir_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="RestoranID" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Isim" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="MenuTuru" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Icerik" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_getRestoran_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="KullaniciAdi" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Sifre" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Isim" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Tur" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Adres" Nullable="false" MaxLength="255" />
+    <Property Type="Int32" Name="Kapasite" Nullable="false" />
+    <Property Type="Int32" Name="AnlikKapasite" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_getMasa_Result">
+    <Property Type="Int32" Name="No" Nullable="false" />
+    <Property Type="Int32" Name="RestoranID" Nullable="false" />
+    <Property Type="Boolean" Name="Bos" Nullable="false" />
+    <Property Type="Int32" Name="Kapasite" Nullable="false" />
+  </ComplexType>
+</Schema>

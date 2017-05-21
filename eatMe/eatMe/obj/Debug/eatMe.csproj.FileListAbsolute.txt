@@ -1,0 +1,10 @@
+c:\users\cgr\documents\visual studio 2010\Projects\eatMe\eatMe\bin\eatMe.dll
+c:\users\cgr\documents\visual studio 2010\Projects\eatMe\eatMe\bin\eatMe.pdb
+c:\users\cgr\documents\visual studio 2010\Projects\eatMe\eatMe\obj\Debug\eatMe.dll
+c:\users\cgr\documents\visual studio 2010\Projects\eatMe\eatMe\obj\Debug\eatMe.pdb
+C:\Users\cgr\documents\visual studio 2010\Projects\eatMe\eatMe\obj\Debug\eatMe.csprojResolveAssemblyReference.cache
+D:\3.Sınıf Bahar Dönemi Dersleri\Asp.Net\WebTabanlıWindows\eatMe\eatMe\bin\eatMe.dll
+D:\3.Sınıf Bahar Dönemi Dersleri\Asp.Net\WebTabanlıWindows\eatMe\eatMe\bin\eatMe.pdb
+D:\3.Sınıf Bahar Dönemi Dersleri\Asp.Net\WebTabanlıWindows\eatMe\eatMe\obj\Debug\eatMe.csprojResolveAssemblyReference.cache
+D:\3.Sınıf Bahar Dönemi Dersleri\Asp.Net\WebTabanlıWindows\eatMe\eatMe\obj\Debug\eatMe.dll
+D:\3.Sınıf Bahar Dönemi Dersleri\Asp.Net\WebTabanlıWindows\eatMe\eatMe\obj\Debug\eatMe.pdb

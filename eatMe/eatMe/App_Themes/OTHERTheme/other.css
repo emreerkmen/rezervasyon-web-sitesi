@@ -1,0 +1,440 @@
+﻿head,body, h1, h2, h3, h4, h5, h6, a{
+	margin: 0;
+	font-family: verdana;
+	text-decoration: none;
+}
+
+a
+{
+    color:White;
+}
+
+.top{
+	background-color: white; 
+	height: 150px;
+}
+
+.header{
+	padding-top: 60px;
+    float: left;
+    color: cornflowerblue;
+}
+
+ul.doors{
+	margin: 0;
+	height: inherit;
+	padding: 0;
+}
+
+ul.doors li{
+	float: left;
+	list-style: none;
+	padding: 10px;
+}
+
+ul.doors li:hover{
+	background-color: darkorange;
+	cursor: pointer;
+}
+
+ul.doors li a{
+	color: black;
+}
+
+.nav{
+	background-color: cornflowerblue;
+    height: 40px;
+}
+
+.nav-wrapper{
+	height: 40px;
+    padding: 0px 232px;
+}
+
+.content{
+	width: 960px;
+	margin: auto;
+	margin-top: 40px;
+	/*border: 1px solid cornflowerblue;*/
+    border-radius: 4px;
+    overflow: auto;
+    margin-bottom: 40px;
+}
+
+.menus{
+    height: 350px;
+    width: 350px;
+    float: left;
+    background-image: url('../../Images/burger5.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    margin-right: 30px;
+}
+
+.restaurants{
+    height: 350px;
+    width: 580px;
+    float: right;
+    background-image: url('../../Images/rest2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+}
+
+.advantages{
+    height: 350px;
+    width: 650px;
+    float: left;
+    background-image: url('../../Images/rest4.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    margin-top: 30px;
+}
+
+.random{
+    height: 350px;
+    width: 300px;
+    float: right;
+    background-image: url('../../Images/adam.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    margin-top: 30px;
+}
+
+.advantages:hover, .menus:hover, .restaurants:hover, .random:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+
+
+.img{
+    height:350px;
+    opacity: 0.8;
+}
+
+.login-signin{
+    float: right;
+    margin-right: 195px;
+    padding: 10px;
+    border: 1px #e5e5e5 solid;
+    border-radius: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: right;
+}
+
+.text{
+    margin: 8px;
+    margin-left: 2px;
+    border-radius: 4px;
+    border-style: hidden;
+    height: 20px;
+    width: 200px;
+    box-shadow: 1px 1px 6px darkgrey;
+    padding: 1px;
+    font-family: consolas;
+}
+
+.lbl{
+    color: black;
+    vertical-align: middle;
+    font-size: 13px;
+    font-family: tahoma;
+    margin-left: 6px;
+}
+
+.btn{
+    
+    border-style: hidden;
+    margin-right: 8px;
+    color: White;
+    background-color: #5ea9c9;
+    height: 37px;
+    width: 96px;
+    border-radius: 4px;
+    margin-top: 4px;
+    font-weight: bolder;
+}
+
+.btn:hover{
+    cursor: pointer;
+}
+
+.signin{
+    margin-top:10px;
+    float:left;
+    margin-left: 20px;
+}
+
+.signin a:hover{
+    color:gold;
+    cursor: pointer;
+}
+
+.panel{
+    position: absolute;
+    background-color: whitesmoke;
+    z-index: 2;
+    left: 423px;
+    top: 200px;
+    padding: 15px;
+    border: 2px solid #888;
+    width: 500px;
+}
+
+#ic{
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 250003;
+    text-align: left;
+}
+
+#shtorki{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.36);
+}
+
+.close{
+    height: 25px;
+    width: 25px;
+    position: fixed;
+    left: 943px;
+    top: 192px;
+}
+
+.close:hover{
+    cursor: pointer;
+}
+
+.bilgi
+{
+    padding-bottom: 12px;
+}
+
+.panel-kutu
+{
+    margin-right:320px;
+    text-align: right;
+}
+
+.uyari
+{
+    color:Red;
+    font-size:10px;
+    margin-right:50px;
+    display: none;
+}
+
+.kayit
+{
+    padding: 10px;
+    border: 1px #e5e5e5 solid;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.profil
+{
+    font-size: 13px;
+    float: left;
+    color: Black;
+}
+
+.isim
+{
+    color:crimson;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.cikisbtn
+{
+    float: left;
+    margin-right: 0;
+    background-color: #5ea9c9;
+}
+
+.list
+{
+    padding:30px;
+    background-color: ghostwhite;
+    border-radius: 4px;
+}
+
+.listBody
+{
+    padding-top: 20px;
+}
+
+.listBodyInside
+{
+    padding: 0 10px;
+}
+
+.restItem, .rezItem
+{
+    padding:10px;
+}
+
+.head
+{
+    border-bottom: 2px solid black;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.restaurantName
+{
+    color: Black;
+}
+
+.tekMasa
+{
+    width:21%;
+    height:150px;
+    font-size:small;
+    float:left;
+    margin:17.5px;
+    border-radius: 10px;
+    text-align:center;
+    color:black;
+    background-color: darkorange;
+}
+
+.tekMasa:hover
+{
+    background-color: skyblue;
+    cursor:pointer;
+}
+
+.active
+{
+    background-color: skyblue;
+}
+
+.menu
+{
+    margin-top:10px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.menuBaslik
+{
+    border-bottom:1px solid black;
+    padding-bottom:5px;
+    color:cornflowerblue;
+    font-weight: bold;
+}
+
+.item
+{
+    padding:10px;
+}
+
+
+
+.siparisVer:hover
+{
+    cursor:pointer;
+}
+
+.adet
+{
+    margin-left: 10px;
+    width: 30px;
+    border-radius: 3px;
+    border-style: groove;
+}
+
+.siparis
+{
+    text-align:center;
+    margin-top: 30px;
+}
+
+.menuWithHeader
+{
+    margin-top: 20px; */
+}
+
+.restaurantName:hover
+{
+    cursor:pointer;
+    text-decoration:underline;
+}
+
+.anlikKapasite
+{
+    margin-right: 20px;
+    background-color: gold;
+    padding: 2px;
+    border-radius: 4px;
+    color: black;
+}
+
+.rezTarih
+{
+    margin-right: 20px;
+    padding: 2px;
+    border-radius: 4px;
+}
+
+
+.masaNo
+{
+    margin-top:35px;
+}
+
+.rezBilgi
+{
+    float:left;
+    margin-top:8px;
+}
+
+.kapasite
+{
+    margin-top:35px;
+    font-size:25px;
+}
+
+.footer
+{
+    height:200px;
+    background-color: crimson;
+    text-align: center;
+}
+
+.imza
+{
+    margin-top: 10px;
+    /* border: 1px solid #ff3333; */
+    padding: 10px;
+    font-size: 20px;
+    background-color: darkseagreen;
+    color: white;
+    font-family: monospace;
+    border-radius: 80px;
+}
+
+.path
+{
+    color:White;
+}
+
+.logo
+{
+    height:190px;
+    margin-left:90px;
+    float:left;
+}

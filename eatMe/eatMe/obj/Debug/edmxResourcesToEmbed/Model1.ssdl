@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EatMeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="EatMeModelStoreContainer">
+    <EntitySet Name="Kullanici" EntityType="EatMeModel.Store.Kullanici" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Masa" EntityType="EatMeModel.Store.Masa" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Restoran" EntityType="EatMeModel.Store.Restoran" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Rezervasyon" EntityType="EatMeModel.Store.Rezervasyon" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Siparis" EntityType="EatMeModel.Store.Siparis" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="EatMeModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Urun" EntityType="EatMeModel.Store.Urun" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Masa_Restoran" Association="EatMeModel.Store.FK_Masa_Restoran">
+      <End Role="Restoran" EntitySet="Restoran" />
+      <End Role="Masa" EntitySet="Masa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rezervasyon_Kullanici" Association="EatMeModel.Store.FK_Rezervasyon_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Rezervasyon" EntitySet="Rezervasyon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rezervasyon_Restoran" Association="EatMeModel.Store.FK_Rezervasyon_Restoran">
+      <End Role="Restoran" EntitySet="Restoran" />
+      <End Role="Rezervasyon" EntitySet="Rezervasyon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Siparis_Kullanici" Association="EatMeModel.Store.FK_Siparis_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Siparis_Restoran" Association="EatMeModel.Store.FK_Siparis_Restoran">
+      <End Role="Restoran" EntitySet="Restoran" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Siparis_Rezervasyon" Association="EatMeModel.Store.FK_Siparis_Rezervasyon">
+      <End Role="Rezervasyon" EntitySet="Rezervasyon" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Siparis_Urun" Association="EatMeModel.Store.FK_Siparis_Urun">
+      <End Role="Urun" EntitySet="Urun" />
+      <End Role="Siparis" EntitySet="Siparis" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Kullanici">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="KullaniciAdi" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Sifre" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Isim" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Soyisim" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="TelefonNo" Type="nvarchar" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Masa">
+    <Key>
+      <PropertyRef Name="No" />
+      <PropertyRef Name="RestoranID" />
+    </Key>
+    <Property Name="No" Type="int" Nullable="false" />
+    <Property Name="RestoranID" Type="int" Nullable="false" />
+    <Property Name="Bos" Type="bit" Nullable="false" />
+    <Property Name="Kapasite" Type="int" Nullable="false" />
+    <Property Name="Saat" Type="int" />
+  </EntityType>
+  <EntityType Name="Restoran">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+    <Property Name="Isim" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Tur" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Adres" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Kapasite" Type="int" Nullable="false" />
+    <Property Name="AnlikKapasite" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rezervasyon">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RestoranID" Type="int" Nullable="false" />
+    <Property Name="MusteriID" Type="int" Nullable="false" />
+    <Property Name="KisiSayisi" Type="int" Nullable="false" />
+    <Property Name="Tarih" Type="date" Nullable="false" />
+    <Property Name="MasaNo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Siparis">
+    <Key>
+      <PropertyRef Name="RezervasyonID" />
+      <PropertyRef Name="RestoranID" />
+      <PropertyRef Name="MusteriID" />
+      <PropertyRef Name="UrunID" />
+    </Key>
+    <Property Name="RezervasyonID" Type="int" Nullable="false" />
+    <Property Name="RestoranID" Type="int" Nullable="false" />
+    <Property Name="MusteriID" Type="int" Nullable="false" />
+    <Property Name="UrunID" Type="int" Nullable="false" />
+    <Property Name="Adet" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Urun">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="RestoranID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="RestoranID" Type="int" Nullable="false" />
+    <Property Name="Isim" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="MenuTuru" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Icerik" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Masa_Restoran">
+    <End Role="Restoran" Type="EatMeModel.Store.Restoran" Multiplicity="1" />
+    <End Role="Masa" Type="EatMeModel.Store.Masa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restoran">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Masa">
+        <PropertyRef Name="RestoranID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rezervasyon_Kullanici">
+    <End Role="Kullanici" Type="EatMeModel.Store.Kullanici" Multiplicity="1" />
+    <End Role="Rezervasyon" Type="EatMeModel.Store.Rezervasyon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Rezervasyon">
+        <PropertyRef Name="MusteriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rezervasyon_Restoran">
+    <End Role="Restoran" Type="EatMeModel.Store.Restoran" Multiplicity="1" />
+    <End Role="Rezervasyon" Type="EatMeModel.Store.Rezervasyon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restoran">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Rezervasyon">
+        <PropertyRef Name="RestoranID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Siparis_Kullanici">
+    <End Role="Kullanici" Type="EatMeModel.Store.Kullanici" Multiplicity="1" />
+    <End Role="Siparis" Type="EatMeModel.Store.Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="MusteriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Siparis_Restoran">
+    <End Role="Restoran" Type="EatMeModel.Store.Restoran" Multiplicity="1" />
+    <End Role="Siparis" Type="EatMeModel.Store.Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restoran">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="RestoranID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Siparis_Rezervasyon">
+    <End Role="Rezervasyon" Type="EatMeModel.Store.Rezervasyon" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Siparis" Type="EatMeModel.Store.Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rezervasyon">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="RezervasyonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Siparis_Urun">
+    <End Role="Urun" Type="EatMeModel.Store.Urun" Multiplicity="1" />
+    <End Role="Siparis" Type="EatMeModel.Store.Siparis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urun">
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="RestoranID" />
+      </Principal>
+      <Dependent Role="Siparis">
+        <PropertyRef Name="UrunID" />
+        <PropertyRef Name="RestoranID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_anlikKapasiteAyarla" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="restoranID" Type="int" Mode="In" />
+    <Parameter Name="kapasite" Type="int" Mode="In" />
+    <Parameter Name="ekle" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_getKullaniciBilgisi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_getKullaniciRezervasyonlari" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="musteriID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_getMasa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="restoranID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_getMenu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="restoranID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_getRestoran" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_getRestoranAdi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="restoranID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_getRezervasyonID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_getTekRestoran" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="restoranID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_girisYap" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="kullaniciAdi" Type="nvarchar" Mode="In" />
+    <Parameter Name="sifre" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_kullaniciAdiKontrol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="kullaniciAdi" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_masaAyarla" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="masaNo" Type="int" Mode="In" />
+    <Parameter Name="restoranID" Type="int" Mode="In" />
+    <Parameter Name="uygunluk" Type="bit" Mode="In" />
+    <Parameter Name="saat" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_masalariGetir" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="resID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_rezervasyonIptal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="rezervasyonID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_rezervasyonYap" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="restoranID" Type="int" Mode="In" />
+    <Parameter Name="musteriID" Type="int" Mode="In" />
+    <Parameter Name="kisiSayisi" Type="int" Mode="In" />
+    <Parameter Name="tarih" Type="date" Mode="In" />
+    <Parameter Name="masaNo" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_siparisAl" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="rezervasyonID" Type="int" Mode="In" />
+    <Parameter Name="restoranID" Type="int" Mode="In" />
+    <Parameter Name="musteriID" Type="int" Mode="In" />
+    <Parameter Name="urunID" Type="int" Mode="In" />
+    <Parameter Name="adet" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_urunGetir" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_yeniKullanici" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="kullaniciAdi" Type="nvarchar" Mode="In" />
+    <Parameter Name="sifre" Type="nvarchar" Mode="In" />
+    <Parameter Name="isim" Type="nvarchar" Mode="In" />
+    <Parameter Name="soyisim" Type="nvarchar" Mode="In" />
+    <Parameter Name="telefon" Type="nvarchar" Mode="In" />
+  </Function>
+</Schema>
